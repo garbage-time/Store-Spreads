@@ -2,6 +2,7 @@ import nest_asyncio
 import odds_helper as oh
 import boto3
 import pandas as pd
+import os
 
 from oddsapi import OddsApiClient
 from botocore.exceptions import ClientError
