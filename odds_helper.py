@@ -1,11 +1,5 @@
 import pandas as pd
 import datetime as dt
-import os
-
-# API keys
-ODDS_API_KEY          = os.getenv('ODDS_API_KEY')
-AWS_ACCESS_KEY_ID     = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 
 def normalize_odds_api_data(data_list: list):
     data_normalized = []
