@@ -8,6 +8,9 @@ on:
 jobs:
   pull_spreads:
     runs-on: ubuntu-latest
+    environment:
+      name: main
+      url: https://github.com/garbage-time/Store-Spreads/settings/environments/2756793342/
     steps:
     - name: Check environment variables
       run: |
