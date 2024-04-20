@@ -10,10 +10,14 @@ from io import StringIO
 # Needed for Odds API
 nest_asyncio.apply()
 
-print(oh.ODDS_API_KEY[0:8])
+# API keys
+ODDS_API_KEY          = os.getenv('ODDS_API_KEY')
+AWS_ACCESS_KEY_ID     = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+
 
 # Connect to the Odds API and retreive spreads data:
-client = OddsApiClient(api_key=oh.ODDS_API_KEY)
+client = OddsApiClient(api_key=ODDS_API_KEY)
 uk = client.retrieve_odds(sport_key='americanfootball_ncaaf', region='uk', mkt='spreads')
 us = client.retrieve_odds(sport_key='americanfootball_ncaaf', region='us', mkt='spreads')
 
@@ -41,8 +45,8 @@ assert not df.duplicated().any(), 'Duplicates found in DataFrame'
 # ===== Connect to S3 ============================================================
 s3 = boto3.client(
     's3', 
-    aws_access_key_id=oh.AWS_ACCESS_KEY_ID, 
-    aws_secret_access_key=oh.AWS_SECRET_ACCESS_KEY
+    aws_access_key_id=AWS_ACCESS_KEY_ID, 
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY
 )
 
 # Check if the bucket and flatfile exist:
