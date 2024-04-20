@@ -8,8 +8,11 @@ on:
 jobs:
   pull_spreads:
     runs-on: ubuntu-latest
-    environment:
-      name: keys
+    environment: keys
+    env:
+      ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
     steps:
     - name: Check environment variables
@@ -33,7 +36,3 @@ jobs:
 
     - name: Run pull_spreads.py
       run: python pull_spreads.py
-      env:
-        ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
