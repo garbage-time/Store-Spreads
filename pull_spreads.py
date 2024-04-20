@@ -10,6 +10,8 @@ from io import StringIO
 # Needed for Odds API
 nest_asyncio.apply()
 
+print(oh.ODDS_API_KEY[0:8])
+
 # Connect to the Odds API and retreive spreads data:
 client = OddsApiClient(api_key=oh.ODDS_API_KEY)
 uk = client.retrieve_odds(sport_key='americanfootball_ncaaf', region='uk', mkt='spreads')
