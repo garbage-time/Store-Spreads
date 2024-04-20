@@ -9,6 +9,12 @@ jobs:
   pull_spreads:
     runs-on: ubuntu-latest
     steps:
+    - name: Check environment variables
+      run: |
+          echo "ODDS_API_KEY is set: ${{ env.ODDS_API_KEY != '' }}"
+          echo "AWS_ACCESS_KEY_ID is set: ${{ env.AWS_ACCESS_KEY_ID != '' }}"
+          echo "AWS_SECRET_ACCESS_KEY is set: ${{ env.AWS_SECRET_ACCESS_KEY != '' }}"
+          
     - name: Checkout code
       uses: actions/checkout@v2
 
