@@ -68,7 +68,6 @@ try:
     s3.put_object(Bucket=bucket, Key=file, Body=csv_buffer.getvalue())
 
 except ClientError as e:
-    # If the file doesn't exist, upload the DataFrame
     print(f'{file} not found')
     print(f'Error: {e}')
 
