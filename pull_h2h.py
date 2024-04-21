@@ -19,8 +19,8 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 
 # Connect to the Odds API and retreive spreads data:
 client = OddsApiClient(api_key=ODDS_API_KEY)
-uk = client.retrieve_odds(sport_key='americanfootball_ncaaf', region='uk', mkt='spreads')
-us = client.retrieve_odds(sport_key='americanfootball_ncaaf', region='us', mkt='spreads')
+uk = client.retrieve_odds(sport_key='americanfootball_ncaaf', region='uk', mkt='h2h')
+us = client.retrieve_odds(sport_key='americanfootball_ncaaf', region='us', mkt='h2h')
 
 # Convert data to JSON for each market:
 uk_json = uk.json['data']
@@ -55,7 +55,7 @@ bucket = 'spreads-bucket'
 file = 'cfb_oapi_h2h.csv'
 
 try:
-    print(f'{file} exists... checking for updates')
+    print(f'{file} exists... appending updates and de-duplicating')
     s3_file = s3.get_object(Bucket=bucket, Key=file)
     s3_df = pd.read_csv(s3_file['Body'])
 
@@ -71,6 +71,5 @@ except ClientError as e:
     # If the file doesn't exist, upload the DataFrame
     print(f'{file} not found')
     print(f'Error: {e}')
-
 
 print('... h2h data push complete')

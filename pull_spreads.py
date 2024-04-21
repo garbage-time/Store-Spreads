@@ -55,7 +55,7 @@ bucket = 'spreads-bucket'
 file = 'cfb_oapi_spreads.csv'
 
 try:
-    print(f'{file} exists... checking for updates')
+    print(f'{file} exists... appending updates and de-duplicating')
     s3_file = s3.get_object(Bucket=bucket, Key=file)
     s3_df = pd.read_csv(s3_file['Body'])
 
@@ -71,6 +71,5 @@ except ClientError as e:
     # If the file doesn't exist, upload the DataFrame
     print(f'{file} not found')
     print(f'Error: {e}')
-
 
 print('... spreads data push complete')

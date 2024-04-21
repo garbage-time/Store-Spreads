@@ -36,3 +36,6 @@ jobs:
 
     - name: Run pull_spreads.py
       run: python pull_spreads.py
+    
+    - name: Run pull_h2h.py
+      run: python pull_h2h.py
