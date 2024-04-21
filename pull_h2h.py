@@ -31,7 +31,7 @@ json_list = [uk_json, us_json]
 df = oh.normalize_odds_api_data(json_list)
 
 # Split columns with list elements:
-df = oh.split_spreads_list_cols(df)
+df = oh.split_h2h_list_cols(df)
 
 # Convert Unix timestamps to date:
 date_cols = ['commence_time', 'last_update']
@@ -52,7 +52,7 @@ s3 = boto3.client(
 
 # Check if the bucket and flatfile exist:
 bucket = 'spreads-bucket'
-file = 'cfb_oapi_spreads.csv'
+file = 'cfb_oapi_h2h.csv'
 
 try:
     print(f'{file} exists... checking for updates')
@@ -73,4 +73,4 @@ except ClientError as e:
     print(f'Error: {e}')
 
 
-print('... spreads data push complete')
+print('... h2h data push complete')

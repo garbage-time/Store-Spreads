@@ -9,19 +9,33 @@ def normalize_odds_api_data(data_list: list):
     df = pd.concat(data_normalized)
     return df
 
-def split_odds_list_cols(data: pd.DataFrame):
+def split_spreads_list_cols(data: pd.DataFrame):
     df = data
     cols_to_split = ['odds.spreads.odds', 'odds.spreads.points', 'teams']
     
     assert set(cols_to_split).issubset(df.columns), f'Columns {cols_to_split} not found in DataFrame'
 
     # Split columns into new columns
-    df[['odds_away', 'odds_home']]     = df['odds.spreads.odds'].apply(pd.Series)
-    df[['points_away', 'points_home']] = df['odds.spreads.points'].apply(pd.Series)
-    df[['team_away', 'team_home']]     = df['teams'].apply(pd.Series)
+    df[['spread_odds_left', 'spread_odds_right']]     = df['odds.spreads.odds'].apply(pd.Series)
+    df[['spread_points_left', 'spread_points_right']] = df['odds.spreads.points'].apply(pd.Series)
+    df[['team_left', 'team_right']]                   = df['teams'].apply(pd.Series)
 
     # Drop the original columns
-    df.drop(columns=['teams', 'odds.spreads.odds', 'odds.spreads.points'], inplace=True)
+    df.drop(columns=cols_to_split, inplace=True)
+    return df
+
+def split_h2h_list_cols(data: pd.DataFrame):
+    df = data
+    cols_to_split = ['odds.h2h', 'teams']
+    
+    assert set(cols_to_split).issubset(df.columns), f'Columns {cols_to_split} not found in DataFrame'
+
+    # Split columns into new columns
+    df[['h2h_odds_left', 'h2h_odds_right']]     = df['odds.h2h'].apply(pd.Series)
+    df[['team_left', 'team_right']]             = df['teams'].apply(pd.Series)
+
+    # Drop the original columns
+    df.drop(columns=cols_to_split, inplace=True)
     return df
 
 def convert_unix_to_date(data: pd.DataFrame, date_cols_list: list):
