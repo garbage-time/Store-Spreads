@@ -1,6 +1,12 @@
 import pandas as pd
 import datetime as dt
 
+
+# Columns to select on:
+h2h_schema = ['site_key', 'site_nice', 'last_update', 'odds.h2h', 'id', 'sport_key', 'sport_nice', 'teams', 'commence_time', 'home_team', 'sites_count']
+spreads_schema = ['site_key', 'site_nice', 'last_update', 'odds.spreads.odds', 'odds.spreads.points', 'id', 'sport_key', 'sport_nice', 'teams', 'commence_time', 'home_team', 'sites_count']
+
+# Functions
 def normalize_odds_api_data(data_list: list):
     data_normalized = []
     for data in data_list:
