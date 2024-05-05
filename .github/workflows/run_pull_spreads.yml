@@ -2,9 +2,8 @@ name: Weekly Pull Spreads
 
 on:
   schedule:
-    - cron: '0 0 * * 1'  # This will run the workflow every Sunday at 00:00
+    - cron: '0 17 * * *'  # This will run the workflow every day at 17:00 (5pm EST)
   workflow_dispatch:
-
 jobs:
   pull_spreads:
     runs-on: ubuntu-latest
