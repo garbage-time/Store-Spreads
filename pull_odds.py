@@ -20,8 +20,8 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 client = OddsApiClient(api_key=ODDS_API_KEY)
 
 # Sports to get data for:
-keys    = ['americanfootball_ncaaf', 'americanfootball_nfl', 'basketball_nba', 'baseball_mlb', 'aussierules_afl']
-abbrevs = ['cfb', 'nfl', 'nba', 'mlb', 'aus']
+keys    = ['americanfootball_ncaaf', 'americanfootball_nfl', 'basketball_nba', 'aussierules_afl']
+abbrevs = ['cfb', 'nfl', 'nba', 'aus']
 
 i=0
 for sport in keys:
