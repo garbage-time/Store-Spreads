@@ -25,6 +25,13 @@ abbrevs = ['cfb', 'nfl', 'nba', 'aus']
 
 i=0
 for sport in keys:
+    
+    # Temporary fix for NBA since no data is currently being returned:
+    if sport == 'basketball_nba':
+        print(f'No data available for {abbrevs[i]}, please fix later \n')
+        i+=1
+        continue
+
     for mkt in ['spreads', 'h2h']:
 
         uk = client.retrieve_odds(sport_key=sport, region='uk', mkt=mkt)
